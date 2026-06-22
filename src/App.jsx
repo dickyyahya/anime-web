@@ -97,13 +97,13 @@ function Main() {
 
   return (
     <main className="main">
-      <AnimeList animes={animes} onSelectedAnime={handleSelectedAnime} />
+      <ListBox animes={animes} onSelectedAnime={handleSelectedAnime} />
       <SelectedBox selectedAnime={selectedAnime} />
     </main>
   );
 }
 
-function AnimeList({ animes, onSelectedAnime }) {
+function ListBox({ animes, onSelectedAnime }) {
   const [isOpen1, setIsOpen1] = useState(true);
 
   return (
