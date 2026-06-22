@@ -89,35 +89,16 @@ function NumResult() {
 function Main() {
   const [animes, setAnimes] = useState(animesData);
   const [selectedAnime, setSelectedAnime] = useState(animes[0]);
-  const [isOpen1, setIsOpen1] = useState(true);
   const [isOpen2, setIsOpen2] = useState(true);
 
   function handleSelectedAnime(id) {
     const newAnime = animes.filter((anime) => anime.mal_id === id);
     setSelectedAnime(newAnime[0]);
   }
+
   return (
     <main className="main">
-      <div className="box">
-        <button className="btn-toggle" onClick={() => setIsOpen1((open) => !open)}>
-          {isOpen1 ? "–" : "+"}
-        </button>
-        {isOpen1 && (
-          <ul className="list list-anime">
-            {animes?.map((anime) => (
-              <li key={anime.mal_id} onClick={() => handleSelectedAnime(anime.mal_id)}>
-                <img src={anime.image} alt={`${anime.title} cover`} />
-                <h3>{anime.title}</h3>
-                <div>
-                  <p>
-                    <span>{anime.year}</span>
-                  </p>
-                </div>
-              </li>
-            ))}
-          </ul>
-        )}
-      </div>
+      <AnimeList animes={animes} onSelectedAnime={handleSelectedAnime} />
       <div className="box">
         <button className="btn-toggle" onClick={() => setIsOpen2((open) => !open)}>
           {isOpen2 ? "–" : "+"}
@@ -142,5 +123,32 @@ function Main() {
         )}
       </div>
     </main>
+  );
+}
+
+function AnimeList({ animes, onSelectedAnime }) {
+  const [isOpen1, setIsOpen1] = useState(true);
+
+  return (
+    <div className="box">
+      <button className="btn-toggle" onClick={() => setIsOpen1((open) => !open)}>
+        {isOpen1 ? "–" : "+"}
+      </button>
+      {isOpen1 && (
+        <ul className="list list-anime">
+          {animes?.map((anime) => (
+            <li key={anime.mal_id} onClick={() => onSelectedAnime(anime.mal_id)}>
+              <img src={anime.image} alt={`${anime.title} cover`} />
+              <h3>{anime.title}</h3>
+              <div>
+                <p>
+                  <span>{anime.year}</span>
+                </p>
+              </div>
+            </li>
+          ))}
+        </ul>
+      )}
+    </div>
   );
 }
