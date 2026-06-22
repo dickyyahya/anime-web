@@ -41,10 +41,12 @@ const animesData = [
 ];
 
 export default function App() {
+  const [animes, setAnimes] = useState(animesData);
+
   return (
     <>
       <NavBar />
-      <Main />
+      <Main animes={animes} />
     </>
   );
 }
@@ -86,8 +88,7 @@ function NumResult() {
   );
 }
 
-function Main() {
-  const [animes, setAnimes] = useState(animesData);
+function Main({ animes }) {
   const [selectedAnime, setSelectedAnime] = useState(animes[0]);
 
   function handleSelectedAnime(id) {
