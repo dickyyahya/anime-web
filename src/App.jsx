@@ -44,18 +44,22 @@ export default function App() {
   const [animes, setAnimes] = useState(animesData);
 
   return (
-    <> 
-      <NavBar animes={animes} />
+    <>
+      <NavBar>
+        <Search>
+          <NumResult animes={animes} />
+        </Search>
+      </NavBar>
       <Main animes={animes} />
     </>
   );
 }
 
-function NavBar({ animes }) {
+function NavBar({ children }) {
   return (
     <nav className="nav-bar">
       <Logo />
-      <Search animes={animes} />
+      {children}
     </nav>
   );
 }
@@ -70,12 +74,12 @@ function Logo() {
   );
 }
 
-function Search({ animes }) {
+function Search({ children }) {
   const [query, setQuery] = useState("");
   return (
     <div className="search-container">
       <input className="search" type="text" placeholder="Search anime..." value={query} onChange={(e) => setQuery(e.target.value)} />
-      <NumResult animes={animes} />
+      {children}
     </div>
   );
 }
