@@ -54,11 +54,7 @@ function NavBar() {
 
   return (
     <nav className="nav-bar">
-      <div className="logo">
-        <span role="img">🍥</span>
-        <h1>WeeBoo</h1>
-        <span role="img">🍥</span>
-      </div>
+      <Logo />
       <div className="search-container">
         <input className="search" type="text" placeholder="Search anime..." value={query} onChange={(e) => setQuery(e.target.value)} />
         <p className="search-results">
@@ -66,6 +62,16 @@ function NavBar() {
         </p>
       </div>
     </nav>
+  );
+}
+
+function Logo() {
+  return (
+    <div className="logo">
+      <span role="img">🍥</span>
+      <h1>WeeBoo</h1>
+      <span role="img">🍥</span>
+    </div>
   );
 }
 
